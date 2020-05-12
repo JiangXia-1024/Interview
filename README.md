@@ -1,4 +1,5 @@
 # Interview
+
 精心收录整理互联网笔试面试题，以及自己发布的文章，欢迎各位star！或者关注微信公众号【1024笔记】，免费获取海量学习资源
 
 | 作者：新一、
@@ -43,7 +44,7 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200509105222272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200509105311917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 对于short s1= 1; s1 += 1;在java中+=的作用包含两个部分，除了基本的加法运算功能之外，还可以隐形转换改变结果的类型，将计算结果的类型转换为“+=”符号左边的对象的类型。所以可以正确编译
-![image-20200509105921493](C:\Users\raven.jiang\AppData\Roaming\Typora\typora-user-images\image-20200509105921493.png)
+![img](https://img-blog.csdnimg.cn/20200509105757495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 
 ### 3、使用final关键字修饰一个变量时,是引用不能变,还是引用的对象不能变
 
@@ -147,11 +148,9 @@ int则无法表达出未赋值的情况。
 另外，Integer提供了多个与整数相关的操作方法，例如，将一个字符串转换成整数，Integer中还定
 义了表示整数的最大值和最小值的常量。
 
-### 5、Overload和Override的区别？Overload的方法是否可以改
+### 5、Overload和Override的区别？Overload的方法是否可以改变返回值的类型?
 
-### 变返回值的类型?
-
-### **1、overload**
+### **5.1、overload**
 
 Overload的中文意思是重载，它表示同一个类中可以有多个名称相同的方法，但这些方法的参数列表各不相同，即参数的个数或类型至少有一个不同，但返回值和方法属性必须相同。在调用的时候，VM就会根据不同的参数列表，来执行对应的合适的方法。
 比如：
@@ -198,7 +197,7 @@ public class Demo4 {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200512102223457.png)
 的确上述的代码，并没有报错。但是我们想想，上面的两个say方法，一个返回的是说的内容（返回值类型是string），一个返回的是说了几句话(返回值类型是int)，这两个方法的功能是不一样的。所以他们已经是两个不一样的方法了，只是方法名一样，但是并不是方法的重载（我也不能说我说的都对，只是个人觉得的，目前也没有在一本权威的书本上面看到这类的答案，所以如果有小伙伴觉得不对，或者看到了权威的说法，欢迎指正）。
 
-### 2、Override
+### 5.2、Override
 
 Override重写(覆盖)，表示子类中的方法可以与父类中的某个方法的名称和参数完全相同，通过子类创建的实 例对象调用这个方法时，将调用子类中的定义方法，这相当于把父类中定义的那个完全相同的方法给覆盖了，
 这也正是面向对象编程的中多态性的一种表现。子类覆盖父类的方法时，只能比父类抛出更少的异常，或者是抛出父类抛出的异常的子异常，因为子类可以解决父类的一些问题，所以不能比父类有更多的问题。
@@ -254,7 +253,7 @@ public class Demo5 extends Demo4 {
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020051210532382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 
-### 3、overwrite
+### 5.3、overwrite
 
 overwrite重写的意思：java官方文档没有该词的出现，所以java中就没有它的存在，但是也有人把overwrite解释为override。
 但是在C++中将Override和overwrite进行了区分。
@@ -270,7 +269,7 @@ Overwrite：重写
 （2）如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字。此时，基类的函数被隐藏。
 所以如果是java的话根本不需要考虑overwrite，记住overload和override即可。
 
-### 4、总结
+### 5.4、总结
 
 override：
     1、覆盖的方法的标志必须要和被覆盖的方法的标志完全匹配，才能达到覆盖的效果；
