@@ -41,10 +41,10 @@
 ### 2、short s1= 1; s1 = s1+1 和short s1 = 1; s1 += 1；有什么区别
 
 对于short s1= 1; s1 = s1+1因为1是int类型，而等号左边的s1是short类型，由于s1+1运算时会自动提升表达式的类型，所以运算的结果是int型，再赋值给 short类型s1时，编译器将报告需要强制转换类型的错误，所以需要进行强转。
-https://img-blog.csdnimg.cn/20200509105222272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70
-https://img-blog.csdnimg.cn/20200509105311917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70
+![](https://img-blog.csdnimg.cn/20200509105222272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
+![](https://img-blog.csdnimg.cn/20200509105311917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 对于short s1= 1; s1 += 1;在java中+=的作用包含两个部分，除了基本的加法运算功能之外，还可以隐形转换改变结果的类型，将计算结果的类型转换为“+=”符号左边的对象的类型。所以可以正确编译
-https://img-blog.csdnimg.cn/20200509105757495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70
+![](https://img-blog.csdnimg.cn/20200509105757495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 ### 3、使用final关键字修饰一个变量时,是引用不能变,还是引用的对象不能变
 
 使用final关键字修饰一个变量时，是指引用变量不能变，但是引用变量所指向的对象中的内容还是可以改变的。
