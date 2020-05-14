@@ -1,16 +1,11 @@
 # Interview
 
 精心收录整理互联网笔试面试题，以及自己发布的文章，欢迎各位star！或者关注微信公众号【1024笔记】，免费获取海量学习资源
-
-| 作者：新一、
-
-| 简书：https://www.jianshu.com/u/b3263fc54bce
-
-| 知乎：https://www.zhihu.com/people/qing-ni-chi-you-zi-96
-
-| GitHub：https://github.com/JangYt?tab=repositories
-
-| 博客地址：https://blog.csdn.net/qq_41153943
+. 作者：新一、
+. 简书：https://www.jianshu.com/u/b3263fc54bce
+. 知乎：https://www.zhihu.com/people/qing-ni-chi-you-zi-96
+. GitHub：https://github.com/JangYt?tab=repositories
+. 博客地址：https://blog.csdn.net/qq_41153943
 
 ## 一、Java基础
 # 笔试面试题集锦
@@ -454,28 +449,28 @@ LinkedList也是线程不安全的，LinkedList提供了一些方法，使得Lin
 使用。
 
 ### 16、jsp有哪些内置对象?作用分别是什么
-1.request 用户端请求，此请求会包含来自GET/POST请求的参数;
-  request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header,和session数据的有用的方法。
-2.response 网页传回用户端的回应;
+1. request 用户端请求，此请求会包含来自GET/POST请求的参数; 
+request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header,和session数据的有用的方法。
+2. response 网页传回用户端的回应;
   response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
-3.pageContext 网页的属性是在这里管理;
+3. pageContext 网页的属性是在这里管理;
   pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的
-4.out 用来传送回应的输出;
+4. out 用来传送回应的输出;
   out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
   ##### servlet相关功能的方法。
-5.session 与请求有关的会话期;
+5. session 与请求有关的会话期;
   session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息
-6.application servlet 正在执行的内容;
+6. application servlet 正在执行的内容;
   applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息
-7.config servlet的构架部件;
+7. config servlet的构架部件;
   config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
-8.page JSP网页本身;
+8. page JSP网页本身;
   page表示从该页面产生的一个servlet实例
-9.exception 针对错误网页，未捕捉的例外;
+9. exception 针对错误网页，未捕捉的例外;
   #### JSP共有以下6种基本动作
-1.jsp:include：在页面被请求的时候引入一个文件。
-2.jsp:useBean：寻找或者实例化一个JavaBean。
-3.jsp:setProperty：设置JavaBean的属性。
-4.jsp:getProperty：输出某个JavaBean的属性。
-5.jsp:forward：把请求转到一个新的页面。
-6.jsp:plugin：根据浏览器类型为Java插件生成OBJECT或EMBED标记
+1. jsp:include：在页面被请求的时候引入一个文件。
+2. jsp:useBean：寻找或者实例化一个JavaBean。
+3. jsp:setProperty：设置JavaBean的属性。
+4. jsp:getProperty：输出某个JavaBean的属性。
+5. jsp:forward：把请求转到一个新的页面。
+6. jsp:plugin：根据浏览器类型为Java插件生成OBJECT或EMBED标记
