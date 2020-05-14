@@ -486,11 +486,11 @@ forward()与redirect()是servlet的两种主要的跳转方式。forward又叫�
 转发过程:客户浏览器发送http请求——>web服务器接受此请求—>调用内部的一个方法在容器内部完成请求处理和转发动作一>将目标资源发送给客户端；
 在这里，转发的路径必须是同一个web容器下的URL，其不能转向到其他的web路径上去，中间传递的 是自己的容器内的request。在客户浏览器路径栏显示的仍然是其
 第一次访问的路径，也就是说客户是感觉不到服务器做了转发的。转发行为是浏览器只做了一次访问请求。
-
+https://img-blog.csdnimg.cn/20200514202933727.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70
 重定向过程:客户浏览器发送http请求一一>web服务器接受后发送302状态码响及对应新的location给客户浏览器——>客户端浏览器发现是302状态码，会自动再发送一
 个新的http请求,请求url是新的location地址一一>服务器根据此请求寻找资源并发送给客户端浏览器在这里location可以重定向到任意URL，
-既然是浏览器重新发出了请求，则就没有什么request传递的概念了。在客户浏览器地址栏显示的是其重定向的路径，客户可以观察到地址的变化的。重定向行为是浏览器
-做了至少两次的访问请求的。
+既然是浏览器重新发出了请求，则就没有什么request传递的概念了。在客户浏览器地址栏显示的是其重定向的路径，客户可以观察到地址的变化的。重定向行为是浏览器做了至少两次的访问请求的。
+https://img-blog.csdnimg.cn/20200514202710823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70
 #### 区别：
 1. 从地址栏显示来说：    
    forward是服务器内部的重定向，服务器请求资源,服务器直接访问目标地址的URL,把那个URL的响应内容读取过来,然后把这些内容再发给浏览器。浏览器根本不知道服务器发送的内容从哪里来的,所以它的地址栏还是原来的地址。    
