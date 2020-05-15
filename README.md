@@ -509,3 +509,6 @@ forward()与redirect()是servlet的两种主要的跳转方式。forward又叫�
    redirect:效率低. 
 5. 从本质来说：
    forword转发是服务器上的行为，而redirect重定向是客户端的行为
+
+### 18、try {}里有一个return语句，那么紧跟在这个try后的ﬁnally{} 里的code会不会被执行，什么时候被执行，在return前还是后?
+ 
