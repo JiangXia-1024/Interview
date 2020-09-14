@@ -457,20 +457,20 @@ LinkedList也是线程不安全的，LinkedList提供了一些方法，使得Lin
 1. request 用户端请求，此请求会包含来自GET/POST请求的参数; 
 request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header,和session数据的有用的方法。
 2. response 网页传回用户端的回应;
-  response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
+    response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
 3. pageContext 网页的属性是在这里管理;
-  pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的
+    pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的
 4. out 用来传送回应的输出;
-  out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
+    out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
   ##### servlet相关功能的方法。
 5. session 与请求有关的会话期;
-  session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息
+    session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息
 6. application servlet 正在执行的内容;
-  applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息
+    applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息
 7. config servlet的构架部件;
-  config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
+    config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
 8. page JSP网页本身;
-  page表示从该页面产生的一个servlet实例
+    page表示从该页面产生的一个servlet实例
 9. exception 针对错误网页，未捕捉的例外;
   #### JSP共有以下6种基本动作
 1. jsp:include：在页面被请求的时候引入一个文件。
@@ -792,5 +792,10 @@ public abstract class Demo11 implements Demo9{
 #### 3、答案
 所以接口可以继承接口。抽象类可以实现(implements)接口，抽象类可以继承具体类。抽象类中可以有静态的main方法。
 
+### 19、char型变量中能不能存贮一个中文汉字?为什么?
 
- 
+char型变量是用来存储Unicode编码的字符的，unicode编码字符集中包含了汉字，所以，char型变
+量中当然可以存储汉字啦。不过，如果某个特殊的汉字没有被包含在unicode编码字符集中，那么，这
+个char型变量中就不能存储这个特殊汉字。补充说明：unicode编码占用两个字节，所以，char类型的
+变量也是占用两个字节。
+
