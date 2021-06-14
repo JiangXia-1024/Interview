@@ -1519,3 +1519,189 @@ update t_goods
 set status=2,version=version+1
 where id=#{id} and version=#{version};
 ```
+
+### 60、进程、线程
+
+#### 进程
+
+狭义：进程是正在运行的程序的实例。
+
+广义：进程是一个具有一定独立功能的程序，关于某个数据集合的一次运行活动。
+
+进程是操作系统动态执行的基本单元，在传统的操作系统中， 进程即是基本的分配单元，也是基本的执行单元。
+
+#### 线程
+
+线程是操作系统能够进行运算调试的最小单位。它被包含在进程中，是进程中的实际动作单位。一个线程指的是进程中的一个单一顺序的控制流，一个进程中可以并发多个线程，每个线程执行不同的任务。
+
+1.1.3 多线程的优点
+
+1. 可以把占据时间较长的任务放到后台去处理
+2. 程序的运行速度加快
+
+#### 使用多线程
+
+##### 继承Thread
+
+步骤：
+
+1. 创建一个类，这个类需要继承Thread
+2. 重写Thread类的run方法（业务代码）
+3. 实例化创建好的线程类
+4. 调用实例化对象的start方法启动线程
+
+```java
+package chap1;
+
+public class Demo02 {
+    public static void main(String[] args) {
+        Thread t = new Demo02Thread();
+        t.start();  // 启动线程
+        System.out.println("运行了main方法");
+    }
+}
+
+class Demo02Thread extends Thread{
+    @Override
+    public void run() {
+        System.out.println("运行了run方法");
+    }
+}
+```
+
+线程运行具有以下特点
+
+1. 随机性
+
+```java
+package chap1;
+
+public class Demo03 {
+    public static void main(String[] args) {
+        Thread t = new Demo03Thread();
+        t.start();
+        try {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("运行main方法");
+                Thread.sleep(100);
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+
+class Demo03Thread extends Thread{
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("运行run方法");
+                Thread.sleep(100);
+            }
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+在多线程编程中，代码的执行结果与代码的执行顺序或调用顺序是无关的。线程是一个子任务，CPU以不确定的方式或者是以随机的时间来调用线程中的run方法。
+
+如果直接调用线程对象的run方法，不是启动线程，而是由main主线程来调用run方法。
+
+2. start的执行顺序与线程的启动顺序不一致
+
+```java
+package chap1;
+
+public class Demo04 {
+    public static void main(String[] args) {
+        Thread t1 = new Demo04Thread(1);
+        Thread t2 = new Demo04Thread(2);
+        Thread t3 = new Demo04Thread(3);
+        Thread t4 = new Demo04Thread(4);
+        Thread t5 = new Demo04Thread(5);
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+    }
+}
+
+class Demo04Thread extends Thread{
+    private int val;
+    public Demo04Thread(int val){
+        this.val = val;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("val=" + val);
+    }
+}
+```
+
+##### 实现Runnable接口
+
+步骤：
+
+1. 创建一个类，这个类需要实现Runnable接口
+2. 重写Runnable接口的run方法
+3. 实例化创建的这个类
+4. 实例化一个Thread对象，并把第3步创建的对象通过Thread的构造方法进行传递 
+5. 调用Thread对象的start方法
+
+```java
+package chap1;
+
+public class Demo05 {
+    public static void main(String[] args) {
+        Runnable r = new Demo05Thread();
+        Thread t = new Thread(r);
+        t.start();
+        System.out.println("运行了main方法");
+    }
+}
+
+class Demo05Thread implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("运行了run方法");
+    }
+}
+```
+
+使用Thread继承的方式开发多线程应用程序是有局限的，Java是单继承，为了改变这种限抽，可以使用Runnable接口方式来实现多线程。
+
+##### Callable接口
+
+Runnable是执行工作的独立任务，但是它不返回任何值。如果希望任务在完成的同时能够返回一个值，可以通过实现Callable接口。在JDK5.0中引入的Callable接口是一种具有类型参数的泛型，它的类型参数表示从方法call中返回的值的类型。
+
+```
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+public class Demo05 {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        Callable<Integer> callable = new Demo05Callable();
+        FutureTask<Integer> task = new FutureTask<>(callable);
+        Thread t1 = new Thread(task);
+        t1.start();
+        System.out.println("线程返回的值是：" + task.get());
+    }
+}
+
+class Demo05Callable implements Callable<Integer>{
+    @Override
+    public Integer call() throws Exception {
+        System.out.println(Thread.currentThread().getName() + "调用了callable接口的实现类");
+        int val = (int)(Math.random() * 10);
+        System.out.println("准备返回的值是：" + val);
+        return val;
+    }
+}
+```
+
