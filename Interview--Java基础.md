@@ -13,6 +13,7 @@
 . 博客地址：https://blog.csdn.net/qq_41153943
 
 ## 一、Java基础
+
 ### 1、&和&&的区别
 
 &和&&都可以用作逻辑与的运算符，表示逻辑与（and），当运算符两边的表达式的结果都为true 时，整个运算结果才为true，否则，只要有一方为false，则结果为false。
@@ -391,25 +392,30 @@ value可多值。
 ArrayList和Vector都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢，Vector由于使用了synchronized方法（线程安全），通常性能上较ArrayList差。而LinkedList使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历，索引就变慢了，但是插入数据时只需要记录本项的前后项即可，所以插入速度较快。LinkedList也是线程不安全的，LinkedList提供了一些方法，使得LinkedList可以被当作堆栈和队列来使用。
 
 ### 16、jsp有哪些内置对象?作用分别是什么
+
 1. request 用户端请求，此请求会包含来自GET/POST请求的参数; 
-request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header,和session数据的有用的方法。
+   request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header,和session数据的有用的方法。
 2. response 网页传回用户端的回应;
-    response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
+   response表示HttpServletResponse对象，并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
 3. pageContext 网页的属性是在这里管理;
-    pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的
+   pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的
 4. out 用来传送回应的输出;
-    out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
+   out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。
+
   ##### servlet相关功能的方法。
+
 5. session 与请求有关的会话期;
-    session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息
+   session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息
 6. application servlet 正在执行的内容;
-    applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息
+   applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息
 7. config servlet的构架部件;
-    config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
+   config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。
 8. page JSP网页本身;
-    page表示从该页面产生的一个servlet实例
+   page表示从该页面产生的一个servlet实例
 9. exception 针对错误网页，未捕捉的例外;
+
   #### JSP共有以下6种基本动作
+
 1. jsp:include：在页面被请求的时候引入一个文件。
 2. jsp:useBean：寻找或者实例化一个JavaBean。
 3. jsp:setProperty：设置JavaBean的属性。
@@ -418,7 +424,9 @@ request表示HttpServletRequest对象。它包含了有关浏览器请求的信�
 6. jsp:plugin：根据浏览器类型为Java插件生成OBJECT或EMBED标记
 
 ### 17、Servlet API中forward()与redirect()的区别
+
 #### 概念
+
 forward()与redirect()是servlet的两种主要的跳转方式。forward又叫转发，redirect叫做重定向。
 转发过程:客户浏览器发送http请求——>web服务器接受此请求—>调用内部的一个方法在容器内部完成请求处理和转发动作一>将目标资源发送给客户端；
 在这里，转发的路径必须是同一个web容器下的URL，其不能转向到其他的web路径上去，中间传递的 是自己的容器内的request。在客户浏览器路径栏显示的仍然是其第一次访问的路径，也就是说客户是感觉不到服务器做了转发的。转发行为是浏览器只做了一次访问请求。
@@ -430,7 +438,9 @@ forward()与redirect()是servlet的两种主要的跳转方式。forward又叫�
 既然是浏览器重新发出了请求，则就没有什么request传递的概念了。在客户浏览器地址栏显示的是其重定向的路径，客户可以观察到地址的变化的。重定向行为是浏览器做了至少两次的访问请求的。
 
 ![redirct重定向](https://img-blog.csdnimg.cn/20200514202710823.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
+
 #### 区别：
+
 1. 从地址栏显示来说：    
    forward是服务器内部的重定向，服务器请求资源,服务器直接访问目标地址的URL,把那个URL的响应内容读取过来,然后把这些内容再发给浏览器。浏览器根本不知道服务器发送的内容从哪里来的,所以它的地址栏还是原来的地址。    
    redirect是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址。所以地址栏显示的是新的URL。
@@ -448,9 +458,12 @@ forward()与redirect()是servlet的两种主要的跳转方式。forward又叫�
    forword转发是服务器上的行为，而redirect重定向是客户端的行为
 
 ### 18、面试题系列之接口是否可继承接口?抽象类是否可实现(implements)接口?抽象类是否可继承具体类?抽象类中是否可以有静态的main方法？
+
 有一个面试四连击的题目：接口是否可继承接口?抽象类是否可实现(implements)接口?抽象类是否可继承具体类?抽象类中是否可以有静态的main方法？
 上面这个题目我们来慢慢的剖析一下。先从基本的概念说起。
+
 #### 一、接口
+
 官方解释：Java接口是一系列方法的声明，是一些方法特征的集合，一个接口只有方法的特征没有方法的实现，因此这些方法可以在不同的地方被不同的类实现，而这些实现可以具有不同的行为（功能）。
 又到了我最喜欢打比方的环节了：我们身边最常见的接口就是电脑的usb接口了。我们可以想想，我们电脑的usb接口是不是就那么几个但是没有任何的具体的功能？但是当我们把u盘插到usb接口的时候，我们可以进行数据的传输；
 当我们把鼠标插入usb接口的时候，我们可以左键打开网页、文件夹等更多的功能；当我们把键盘插入到usb接口的时候我们可以打字，等等。虽然接入不同的设备可以进行不同的操作，但是上述的设备操作都是和电脑的数据交互。
@@ -499,10 +512,10 @@ public interface Demo9 extends Demo8{
 	void print(String name);
 }
 ```
+
 一个类实现 一个接口，如果这个接口继承了另一个接口，那么这个类除了实现这个接口的所有方法以外，还要实现被继承的那个接口的所有方法：
 
 ```cpp
-
 public class Demo10 implements Demo9 {
 
 	public static void main(String[] args) {
@@ -532,6 +545,7 @@ public class Demo10 implements Demo9 {
 ```
 
 #### 二、抽象类
+
 在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。
 
 抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。具有抽象方法的类一定为抽象类。
@@ -593,6 +607,7 @@ public abstract class Demo11 {
 	   }
 }
 ```
+
 可以看到尽管该类是抽象类，但是它仍然有 3 个成员变量，7 个成员方法和 1 个构造方法。但是如果想实例化该类，则会报错：提示不能实例化Demo11
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200520180905402.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200520181024117.png)
@@ -653,6 +668,7 @@ public class Demo10 {
 }
 
 ```
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200520181605164.png)
 所以尽管不能实例化一个抽象类，但是可以实例化一个继承了抽象类的子类，然后将抽象类的引用指向子类的对象。
 
@@ -668,6 +684,7 @@ public abstract class Demo11
    public abstract double computePay();
 }
 ```
+
 如果一个抽象类中有抽象方法，那么任何继承它的子类都必须重写父类的抽象方法，或者子类也可以声明自身为抽象类。但是最终，必须有子类实现该抽象方法，否则，从最初的父类到最终的子类都不能用来实例化对象，那么就没有任何的意义了。
 另外构造方法，类方法（用 static 修饰的方法）不能声明为抽象方法。
 
@@ -718,6 +735,7 @@ public abstract class Demo11 implements Demo9{
 	   }
 }
 ```
+
 ![
 ](https://img-blog.csdnimg.cn/20200520182642272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTUzOTQz,size_16,color_FFFFFF,t_70)
 
@@ -726,7 +744,9 @@ public abstract class Demo11 implements Demo9{
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200520182924166.png)
 抽象类中也可以有静态的main方法。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200520183059554.png)
+
 #### 3、答案
+
 所以接口可以继承接口。抽象类可以实现(implements)接口，抽象类可以继承具体类。抽象类中可以有静态的main方法。
 
 ### 19、char型变量中能不能存贮一个中文汉字?为什么?
@@ -779,6 +799,7 @@ int是java提供的8种原始数据类型之一。Java为每个原始类型提�
 义了表示整数的最大值和最小值的常量。
 
 ### 24、Math.round(11.5)等於多少?Math.round(-11.5)等于多少?
+
 Math类中提供了三个与取整有关的方法：ceil、floor、round，这些方法的作用与它们的英文名称的含义相对应。
 
 例如，ceil的英文意义是天花板，该方法就表示向上取整，Math.ceil(11.3)的结果为12,Math.ceil(-11.3)的结果是-11；
@@ -927,6 +948,7 @@ get方法，参数是key，返回值是key对应的value，这个自由发挥，
 两个或一个都有可能，”xyz”对应一个对象，这个对象放在字符串常量缓冲区，常量”xyz”不管出现多少遍，都是缓冲区中的那一个。NewString每写一遍，就创建一个新的对象，它使用常量”xyz”对象的内容来创建出一个新String对象。如果以前就用过’xyz’，那么这里就不会创建”xyz”了，直接从缓冲区拿，这时创建了一个StringObject；但如果以前没有用过"xyz"，那么此时就会创建一个对象并放入缓冲区，这种情况它创建两个对象。至于String类是否继承，答案是否定的，因为String默认final修饰，是不可继承的。
 
 ### 35、String和StringBuffer的区别
+
 JAVA平台提供了两个类：String和StringBuffer，它们可以储存和操作字符串，即包含多个字符的字符数据。这个String类提供了数值不可改变的字符串。而这个StringBuffer类提供的字符串可以进行修改。当你知道字符数据要改变的时候你就可以使用StringBuffer。典型地，你可以使用StringBuffers来动态构造字符数据。
 
 ### 36、下面这条语句一共创建了多少个对象：Strings="a"+"b"+"c"+"d";
@@ -1808,6 +1830,7 @@ HashSetset = new HashSet(vector);
 ```
 
 ### 71、集合类都有哪些？主要方法？
+
 最常用的集合类是 List 和 Map。 
 
 List的具体实现包括 ArrayList和 Vector，它们是可变大小的列表，比较适合构建、存储和操作任何类型对象的元素列表。
@@ -1819,6 +1842,7 @@ List适用于按数值索引访问元素的情形。Map 提供了一个更通用
 map可以返回三个集合，一个是返回所有的key的集合，另外一个返回的是所有value的集合，再一个返回的key和value组合成的EntrySet对象的集合，map也有get方法，参数是key，返回值是key对应的value。
 
 ### 72、a.hashCode() 有什么用？与 a.equals(b) 有什么关系？
+
 hashCode() 方法对应对象整型的 hash 值。它常用于基于 hash 的集合类，如 Hashtable、HashMap、LinkedHashMap等等。它与 equals() 方法关系特别紧密。根据 Java 规范，两个使用equal() 方法来判断相等的对象，必须具有相同的 hash code。
 
 ### 73、字节流与字符流的区别
@@ -1924,3 +1948,542 @@ overload对我们来说可能比较熟悉，可以翻译为重载，它是指我
 接口可以继承接口。抽象类可以实现(implements)接口，抽象类是否可继承具体类。抽象类中可以有静态的main方法。
 
  只有记住抽象类与普通类的唯一区别就是不能创建实例对象和允许有abstract方法。
+
+### 84、面向对象的特征有哪些方面
+
+计算机软件系统是现实生活中的业务在计算机中的映射，而现实生活中的业务其实就是一个个对象协作的过程。面向对象编程就是按现实业务一样的方式将程序代码按一个个对象进行组织和编写，让计算机系统能够识别和理解用对象方式组织和编写的程序代码，这样就可以把现实生活中的业务对象映射到计算机系统中。
+
+面向对象的编程语言有封装、继承 、抽象、多态等4个主要的特征。
+
+1、封装：
+
+封装是保证软件部件具有优良的模块性的基础，封装的目标就是要实现软件部件的“高内聚、低耦合”，防止程序相互依赖性而带来的变动影响。在面向对象的编程语言中，对象是封装的最基本单位，面向对象的封装比传统语言的封装更为清晰、更为有力。面向对象的封装就是把描述一个对象的属性和行为的代码封装在一个“模块”中，也就是一个类中，属性用变量定义，行为用方法进行定义，方法可以直接访问同一个对象中的属性。通常情况下，**只要记住让变量和访问这个变量的方法放在一起，将一个类中的成员变量全部定义成私有的，只有这个类自己的方法才可以访问到这些成员变量，这就基本上实现对象的封装，就很容易找出要分配到这个类上的方法了，就基本上算是会面向对象的编程了。把握一个原则：把对同一事物进行操作的方法和相关的方法放在同一个类中，把方法和它操作的数据放在同一个类中。**
+
+例如，人要在黑板上画圆，这一共涉及三个对象：人、黑板、圆，画圆的方法要分配给哪个对象呢？由于画圆需要使用到圆心和半径，圆心和半径显然是圆的属性，如果将它们在类中定义成了私有的成员变量，那么，画圆的方法必须分配给圆，它才能访问到圆心和半径这两个属性，人以后只是调用圆的画圆方法、表示给圆发给消息而已，画圆这个方法不应该分配在人这个对象上，**这就是面向对象的封装性，即将对象封装成一个高度自治和相对封闭的个体，对象状态（属性）由这个对象自己的行为（方法）来读取和改变。**一个更便于理解的例子就是，司机将火车刹住了，刹车的动作是分配给司机，还是分配给火车，显然，应该分配给火车，因为司机自身是不可能有那么大的力气将一个火车给停下来的，只有火车自己才能完成这一动作，火车需要调用内部的离合器和刹车片等多个器件协作才能完成刹车这个动作，司机刹车的过程只是给火车发了一个消息，通知火车要执行刹车动作而已。
+
+2、抽象：
+
+抽象就是找出一些事物的相似和共性之处，然后将这些事物归为一个类，这个类只考虑这些事物的相似和共性之处，并且会忽略与当前主题和目标无关的那些方面，将注意力集中在与当前目标有关的方面。例如，看到一只蚂蚁和大象，你能够想象出它们的相同之处，那就是抽象。抽象包括行为抽象和状态抽象两个方面。例如，定义一个Person类，如下：
+
+```
+class Person
+
+{
+	String name;
+	int age;
+}
+```
+
+人本来是很复杂的事物，有很多方面，但因为当前系统只需要了解人的姓名和年龄，所以上面定义的类中只包含姓名和年龄这两个属性，这就是一种抽像，使用抽象可以避免考虑一些与目标无关的细节。我对抽象的理解就是不要用显微镜去看一个事物的所有方面，这样涉及的内容就太多了，而是要善于划分问题的边界，当前系统需要什么，就只考虑什么。
+
+3、继承：
+
+在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并可以加入若干新的内容，或修改原来的方法使之更适合特殊的需要，这就是继承。继承是子类自动共享父类数据和方法的机制，这是类之间的一种关系，提高了软件的可重用性和可扩展性。
+
+4、多态：
+
+多态是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。多态性增强了软件的灵活性和扩展性。例如，下面代码中的UserDao是一个接口，它定义引用变量userDao指向的实例对象由daofactory.getDao()在执行的时候返回，有时候指向的是UserJdbcDao这个实现，有时候指向的是UserHibernateDao这个实现，这样，不用修改源代码，就可以改变userDao指向的具体类实现，从而导致userDao.insertUser()方法调用的具体代码也随之改变，即有时候调用的是UserJdbcDao的insertUser方法，有时候调用的是UserHibernateDao的insertUser方法：
+
+```
+UserDao userDao = daofactory.getDao();  
+userDao.insertUser(user);
+```
+
+比喻：人吃饭，你看到的是左手，还是右手？
+
+### 85、java中实现多态的机制是什么？
+
+靠的是父类或接口定义的引用变量可以指向子类或具体实现类的实例对象，而程序调用的方法在运行期才动态绑定，就是引用变量所指向的具体实例对象的方法，也就是内存里正在运行的那个对象的方法，而不是引用变量的类型中定义的方法。 
+
+### **86、abstract class和interface有什么区别?** 	
+
+含有abstract修饰符的class即为抽象类，abstract 类不能创建的实例对象。含有abstract方法的类必须定义为abstract class，abstract class类中的方法不必是抽象的。abstract class类中定义抽象方法必须在具体(Concrete)子类中实现，所以，不能有抽象构造方法或抽象静态方法。如果的子类没有实现抽象父类中的所有抽象方法，那么子类也必须定义为abstract类型。
+
+接口（interface）可以说成是抽象类的一种特例，接口中的所有方法都必须是抽象的。接口中的方法定义默认为public abstract类型，接口中的成员变量类型默认为public static final。
+
+**下面比较一下两者的语法区别：**
+
+1.抽象类可以有构造方法，接口中不能有构造方法。
+
+2.抽象类中可以有普通成员变量，接口中没有普通成员变量
+
+3.抽象类中可以包含非抽象的普通方法，接口中的所有方法必须都是抽象的，不能有非抽象的普通方法。
+
+4.抽象类中的抽象方法的访问类型可以是public，protected和（默认类型,虽然
+
+eclipse下不报错，但应该也不行），但接口中的抽象方法只能是public类型的，并且默认即为public abstract类型。
+
+5.抽象类中可以包含静态方法，接口中不能包含静态方法
+
+6.抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以任意，但接口中定义的变量只能是public static final类型，并且默认即为public static final类型。
+
+7.一个类可以实现多个接口，但只能继承一个抽象类。
+
+**下面接着再说说两者在应用上的区别：**
+
+接口更多的是在系统架构设计方法发挥作用，主要用于定义模块之间的通信契约。而抽象类在代码实现方面发挥作用，可以实现代码的重用，例如，模板方法设计模式是抽象类的一个典型应用，假设某个项目的所有Servlet类都要用相同的方式进行权限判断、记录访问日志和处理异常，那么就可以定义一个抽象的基类，让所有的Servlet都继承这个抽象基类，在抽象基类的service方法中完成权限判断、记录访问日志和处理异常的代码，在各个子类中只是完成各自的业务逻辑代码，伪代码如下：
+
+```
+public abstract class BaseServlet extends HttpServlet
+{
+​		public final void service(HttpServletRequest request, HttpServletResponse response) throws IOExcetion,ServletException
+​		{
+​			记录访问日志
+​			进行权限判断
+if(具有权限)
+{
+​	try
+​	{
+​		doService(request,response);
+}
+​	catch(Excetpion e)
+​	{
+​			记录异常信息
+​	}
+}
+​		} 
+​		protected abstract void doService(HttpServletRequest request, HttpServletResponse response) throws IOExcetion,ServletException;  
+//注意访问权限定义成protected，显得既专业，又严谨，因为它是专门给子类用的
+}
+public class MyServlet1 extends BaseServlet
+{
+protected void doService(HttpServletRequest request, HttpServletResponse response) throws IOExcetion,ServletException
+​		{
+​			本Servlet只处理的具体业务逻辑代码
+​		} 
+}
+```
+
+父类方法中间的某段代码不确定，留给子类干，就用模板方法设计模式。
+
+备注：这道题的思路是先从总体解释抽象类和接口的基本概念，然后再比较两者的语法细节，最后再说两者的应用区别。比较两者语法细节区别的条理是：先从一个类中的构造方法、普通成员变量和方法（包括抽象方法），静态变量和方法，继承性等6个方面逐一去比较回答，接着从第三者继承的角度的回答，特别是最后用了一个典型的例子来展现自己深厚的技术功底。
+
+### **87、abstract的method是否可同时是static,是否可同时是native，是否可同时是synchronized?** 
+
+abstract的method 不可以是static的，因为抽象的方法是要被子类实现的，而static与子类扯不上关系！
+
+native方法表示该方法要用另外一种依赖平台的编程语言实现的，不存在着被子类实现的问题，所以，它也不能是抽象的，不能与abstract混用。例如，FileOutputSteam类要硬件打交道，底层的实现用的是操作系统相关的api实现，例如，在windows用c语言实现的，所以，查看jdk 的源代码，可以发现FileOutputStream的open方法的定义如下：
+
+private native void open(String name) throws FileNotFoundException;
+
+如果我们要用java调用别人写的c语言函数，我们是无法直接调用的，我们需要按照java的要求写一个c语言的函数，又我们的这个c语言函数去调用别人的c语言函数。由于我们的c语言函数是按java的要求来写的，我们这个c语言函数就可以与java对接上，java那边的对接方式就是定义出与我们这个c函数相对应的方法，java中对应的方法不需要写具体的代码，但需要在前面声明native。
+
+关于synchronized与abstract合用的问题，我觉得也不行，因为在我几年的学习和开发中，从来没见到过这种情况，并且我觉得synchronized应该是作用在一个具体的方法上才有意义。而且，方法上的synchronized同步所使用的同步锁对象是this，而抽象方法上无法确定this是什么。 
+
+### **88、什么是内部类？Static Nested Class 和 Inner Class的不同。**
+
+内部类就是在一个类的内部定义的类，内部类中不能定义静态成员（静态成员不是对象的特性，只是为了找一个容身之处，所以需要放到一个类中而已，这么一点小事，你还要把它放到类内部的一个类中，过分了啊！提供内部类，不是为让你干这种事情，无聊，不让你干。我想可能是既然静态成员类似c语言的全局变量，而内部类通常是用于创建内部对象用的，所以，把“全局变量”放在内部类中就是毫无意义的事情，既然是毫无意义的事情，就应该被禁止），内部类可以直接访问外部类中的成员变量，内部类可以定义在外部类的方法外面，也可以定义在外部类的方法体中，如下所示：
+
+```
+public class Outer
+
+{
+
+​		int out_x  = 0;
+
+​		public void method()
+​		{
+
+​			Inner1 inner1 = new Inner1();
+
+​			public class Inner2  //在方法体内部定义的内部类
+
+​			{
+
+​				public method()
+
+​				{
+
+​					out_x = 3;
+
+​				}
+
+​			}
+
+​			Inner2 inner2 = new Inner2();
+
+​		}
+
+ 
+
+​		public class Inner1  //在方法体外面定义的内部类
+
+​		{
+
+​		}
+
+​		
+
+}
+```
+
+在方法体外面定义的内部类的访问类型可以是public,protecte,默认的，private等4种类型，这就好像类中定义的成员变量有4种访问类型一样，它们决定这个内部类的定义对其他类是否可见；对于这种情况，我们也可以在外面创建内部类的实例对象，创建内部类的实例对象时，一定要先创建外部类的实例对象，然后用这个外部类的实例对象去创建内部类的实例对象，代码如下：
+
+Outer outer = new Outer();
+
+Outer.Inner1 inner1 = outer.new Innner1();
+
+ 
+
+在方法内部定义的内部类前面不能有访问类型修饰符，就好像方法中定义的局部变量一样，但这种内部类的前面可以使用final或abstract修饰符。这种内部类对其他类是不可见的其他类无法引用这种内部类，但是这种内部类创建的实例对象可以传递给其他类访问。这种内部类必须是先定义，后使用，即内部类的定义代码必须出现在使用该类之前，这与方法中的局部变量必须先定义后使用的道理也是一样的。这种内部类可以访问方法体中的局部变量，但是，该局部变量前必须加final修饰符。
+
+对于这些细节，只要在eclipse写代码试试，根据开发工具提示的各类错误信息就可以马上了解到。
+
+ 
+
+在方法体内部还可以采用如下语法来创建一种匿名内部类，即定义某一接口或类的子类的同时，还创建了该子类的实例对象，无需为该子类定义名称：
+
+```
+public class Outer
+
+{
+
+​		public void start()
+
+​		{
+
+​			new Thread(
+
+new Runable(){
+
+​					public void run(){};
+
+}
+
+).start();
+
+​		}
+
+}
+```
+
+ 
+
+最后，在方法外部定义的内部类前面可以加上static关键字，从而成为Static Nested Class，它不再具有内部类的特性，所有，从狭义上讲，它不是内部类。Static Nested Class与普通类在运行时的行为和功能上没有什么区别，只是在编程引用时的语法上有一些差别，它可以定义成public、protected、默认的、private等多种类型，而普通类只能定义成public和默认的这两种类型。在外面引用Static Nested Class类的名称为“外部类名.内部类名”。在外面不需要创建外部类的实例对象，就可以直接创建Static Nested Class，例如，假设Inner是定义在Outer类中的Static Nested Class，那么可以使用如下语句创建Inner类：
+
+Outer.Inner inner = new Outer.Inner();
+
+由于static Nested Class不依赖于外部类的实例对象，所以，static Nested Class能访问外部类的非static成员变量。当在外部类中访问Static Nested Class时，可以直接使用Static Nested Class的名字，而不需要加上外部类的名字了，在Static Nested Class中也可以直接引用外部类的static的成员变量，不需要加上外部类的名字。
+
+在静态方法中定义的内部类也是Static Nested Class，这时候不能在类前面加static关键字，静态方法中的Static Nested Class与普通方法中的内部类的应用方式很相似，它除了可以直接访问外部类中的static的成员变量，还可以访问静态方法中的局部变量，但是，该局部变量前必须加final修饰符。
+
+备注：首先根据你的印象说出你对内部类的总体方面的特点：例如，在两个地方可以定义，可以访问外部类的成员变量，不能定义静态成员，这是大的特点。然后再说一些细节方面的知识，例如，几种定义方式的语法区别，静态内部类，以及匿名内部类。
+
+### **89、内部类可以引用它的包含类的成员吗？有没有什么限制？** 
+
+完全可以。如果不是静态内部类，那没有什么限制！ 
+
+如果你把静态嵌套类当作内部类的一种特例，那在这种情况下不可以访问外部类的普通成员变量，而只能访问外部类中的静态成员，例如，下面的代码：
+
+```
+class Outer
+
+{
+
+​	static int x;
+
+​	static class Inner
+
+​	{
+
+​		void test()
+
+​		{
+
+​			syso(x);
+
+​		}
+
+​	}
+
+}
+```
+
+答题时，也要能察言观色，揣摩提问者的心思，显然人家希望你说的是静态内部类不能访问外部类的成员，但你一上来就顶牛，这不好，要先顺着人家，让人家满意，然后再说特殊情况，让人家吃惊。
+
+### **90、Anonymous Inner Class (匿名内部类) 是否可以extends(继承)其它类，是否可以implements(实现)interface(接口)?** 
+
+可以继承其他类或实现其他接口。不仅是可以，而是必须!
+
+### **91、String是最基本的数据类型吗?** 
+
+基本数据类型包括byte、int、char、long、float、double、boolean和short。 
+
+java.lang.String类是final类型的，因此不可以继承这个类、不能修改这个类。为了提高效率节省空间，我们应该用StringBuffer类 
+
+```
+String s = "Hello";s = s + " world!";
+```
+
+这两行代码执行后，原始的String对象中的内容到底变了没有？
+
+没有。因为String被设计成不可变(immutable)类，所以它的所有对象都是不可变对象。在这段代码中，s原先指向一个String对象，内容是 "Hello"，然后我们对s进行了+操作，那么s所指向的那个对象是否发生了改变呢？答案是没有。这时，s不指向原来那个对象了，而指向了另一个 String对象，内容为"Hello world!"，原来那个对象还存在于内存之中，只是s这个引用变量不再指向它了。
+通过上面的说明，我们很容易导出另一个结论，如果经常对字符串进行各种各样的修改，或者说，不可预见的修改，那么使用String来代表字符串的话会引起很大的内存开销。因为 String对象建立之后不能再改变，所以对于每一个不同的字符串，都需要一个String对象来表示。这时，应该考虑使用StringBuffer类，它允许修改，而不是每个不同的字符串都要生成一个新的对象。并且，这两种类的对象转换十分容易。
+同时，我们还可以知道，如果要使用内容相同的字符串，不必每次都new一个String。例如我们要在构造器中对一个名叫s的String引用变量进行初始化，把它设置为初始值，应当这样做：
+
+而非
+
+```
+public class Demo {
+private String s;
+...
+public Demo {
+s = "Initial Value";
+}
+...
+}
+```
+
+而非
+
+后者每次都会调用构造器，生成新对象，性能低下且内存开销大，并且没有意义，因为String对象不可改变，所以对于内容相同的字符串，只要一个String对象来表示就可以了。也就说，多次调用上面的构造器创建多个对象，他们的String类型属性s都指向同一个对象。
+上面的结论还基于这样一个事实：对于字符串常量，如果内容相同，Java认为它们代表同一个String对象。而用关键字new调用构造器，总是会创建一个新的对象，无论内容是否相同。
+至于为什么要把String类设计成不可变类，是它的用途决定的。其实不只String，很多Java标准类库中的类都是不可变的。在开发一个系统的时候，我们有时候也需要设计不可变类，来传递一组相关的值，这也是面向对象思想的体现。不可变类有一些优点，比如因为它的对象是只读的，所以多线程并发访问也不会有任何问题。当然也有一些缺点，比如每个不同的状态都要一个对象来代表，可能会造成性能上的问题。所以Java标准类库还提供了一个可变版本，即 StringBuffer。
+
+```
+s = new String("Initial Value");
+```
+
+
+后者每次都会调用构造器，生成新对象，性能低下且内存开销大，并且没有意义，因为String对象不可改变，所以对于内容相同的字符串，只要一个String对象来表示就可以了。也就说，多次调用上面的构造器创建多个对象，他们的String类型属性s都指向同一个对象。
+上面的结论还基于这样一个事实：对于字符串常量，如果内容相同，Java认为它们代表同一个String对象。而用关键字new调用构造器，总是会创建一个新的对象，无论内容是否相同。
+至于为什么要把String类设计成不可变类，是它的用途决定的。其实不只String，很多Java标准类库中的类都是不可变的。在开发一个系统的时候，我们有时候也需要设计不可变类，来传递一组相关的值，这也是面向对象思想的体现。不可变类有一些优点，比如因为它的对象是只读的，所以多线程并发访问也不会有任何问题。当然也有一些缺点，比如每个不同的状态都要一个对象来代表，可能会造成性能上的问题。所以Java标准类库还提供了一个可变版本，即 StringBuffer。
+
+### **92、String s = new String("xyz");创建了几个String Object? 二者之间有什么区别？**
+
+两个或一个，”xyz”对应一个对象，这个对象放在字符串常量缓冲区，常量”xyz”不管出现多少遍，都是缓冲区中的那一个。New String每写一遍，就创建一个新的对象，它一句那个常量”xyz”对象的内容来创建出一个新String对象。如果以前就用过’xyz’，这句代表就不会创建”xyz”自己了，直接从缓冲区拿。
+
+### **93、String** **和StringBuffer的区别**
+
+JAVA平台提供了两个类：String和StringBuffer，它们可以储存和操作字符串，即包含多个字符的字符数据。String类表示内容不可改变的字符串。而StringBuffer类表示内容可以被修改的字符串。当你知道字符数据要改变的时候你就可以使用StringBuffer。典型地，你可以使用StringBuffers来动态构造字符数据。另外，String实现了equals方法，new String(“abc”).equals(new String(“abc”)的结果为true,而StringBuffer没有实现equals方法，所以，new StringBuffer(“abc”).equals(new StringBuffer(“abc”)的结果为false。
+
+接着要举一个具体的例子来说明，我们要把1到100的所有数字拼起来，组成一个串。
+
+```
+StringBuffer sbf = new StringBuffer();  
+
+for(int i=0;i<100;i++)
+
+{
+
+​	sbf.append(i);
+
+}
+```
+
+上面的代码效率很高，因为只创建了一个StringBuffer对象，而下面的代码效率很低，因为创建了101个对象。
+
+```
+String str = new String();  
+
+for(int i=0;i<100;i++)
+
+{
+
+​	str = str + i;
+
+}
+```
+
+在讲两者区别时，应把循环的次数搞成10000，然后用endTime-beginTime来比较两者执行的时间差异，最后还要讲讲StringBuilder与StringBuffer的区别。
+
+String覆盖了equals方法和hashCode方法，而StringBuffer没有覆盖equals方法和hashCode方法，所以，将StringBuffer对象存储进Java集合类中时会出现问题。
+
+### **94、StringBuffer与StringBuilder的区别**
+
+ StringBuffer和StringBuilder类都表示内容可以被修改的字符串，StringBuilder是线程不安全的，运行效率高，如果一个字符串变量是在方法里面定义，这种情况只可能有一个线程访问它，不存在不安全的因素了，则用StringBuilder。如果要在类里面定义成员变量，并且这个类的实例对象会在多线程环境下使用，那么最好用StringBuffer。
+
+### **95、数组有没有length()这个方法? String有没有length()这个方法？** 
+
+数组没有length()这个方法，有length的属性。String有有length()这个方法。
+
+### **96、下面这条语句一共创建了多少个对象：****String s="a"+"b"+"c"+"****d****";**
+
+答：对于如下代码：
+
+```
+String s2 = s1 + "b";
+
+String s3 = "a" + "b";
+
+System.out.println(s2 == "ab");
+
+System.out.println(s3 == "ab");
+```
+
+第一条语句打印的结果为false，第二条语句打印的结果为true，这说明javac编译可以对字符串常量直接相加的表达式进行优化，不必要等到运行期去进行加法运算处理，而是在编译时去掉其中的加号，直接将其编译成一个这些常量相连的结果。
+
+题目中的第一行代码被编译器在编译时优化后，相当于直接定义了一个”abcd”的字符串，所以，上面的代码应该只创建了一个String对象。写如下两行代码，
+
+```
+String s = "a" + "b" + "c" + "d";
+
+System.out.println(s == "abcd");
+```
+
+最终打印的结果应该为true。 
+
+### **97、try {}里有一个return语句，那么紧跟在这个try后的finally {}里的code会不会被执行，什么时候被执行，在return前还是后?** 
+
+也许你的答案是在return之前，但往更细地说，我的答案是在return中间执行，请看下面程序代码的运行结果： 
+
+```
+public class Test {
+
+ 
+
+​	/**
+
+​	 * **@param** args add by zxx ,Dec 9, 2008
+
+​	 */
+
+​	**public** **static** **void** main(String[] args) {
+
+​		// **TODO** Auto-generated method stub
+
+​		System.*out*.println(**new** Test().test());;
+
+​	}
+
+ 
+
+​	static **int** test()
+
+​	{
+
+​		**int** x = 1;
+
+​		**try**
+
+​		{
+
+​			**return** x;
+
+​		}
+
+​		**finally**
+
+​		{
+
+​			++x;
+
+​		}
+
+​	}
+
+​	
+
+}
+```
+
+---------执行结果 ---------
+
+1
+
+运行结果是1，为什么呢？主函数调用子函数并得到结果的过程，好比主函数准备一个空罐子，当子函数要返回结果时，先把结果放在罐子里，然后再将程序逻辑返回到主函数。所谓返回，就是子函数说，我不运行了，你主函数继续运行吧，这没什么结果可言，结果是在说这话之前放进罐子里的。
+
+### **98、final, finally, finalize的区别。** 
+
+final 用于声明属性，方法和类，分别表示属性不可变，方法不可覆盖，类不可继承。 
+
+内部类要访问局部变量，局部变量必须定义成final类型，例如，一段代码……
+
+finally是异常处理语句结构的一部分，表示总是执行。
+
+finalize是Object类的一个方法，在垃圾收集器执行的时候会调用被回收对象的此方法，可以覆盖此方法提供垃圾收集时的其他资源回收，例如关闭文件等。JVM不保证此方法总被调用
+
+**99、运行时异常与一般异常有何异同？** 
+
+异常表示程序运行过程中可能出现的非正常状态，运行时异常表示虚拟机的通常操作中可能遇到的异常，是一种常见运行错误。java编译器要求方法必须声明抛出可能发生的非运行时异常，但是并不要求必须声明抛出未被捕获的运行时异常。
+
+### **100、error和exception有什么区别?** 
+
+error 表示恢复不是不可能但很困难的情况下的一种严重问题。比如说内存溢出。不可能指望程序能处理这样的情况。 exception 表示一种设计或实现问题。也就是说，它表示如果程序运行正常，从不会发生的情况。 
+
+### **101、请写出你最常见到的5个runtime exception。** 
+
+这道题主要考你的代码量到底多大，如果你长期写代码的，应该经常都看到过一些系统方面的异常，你不一定真要回答出5个具体的系统异常，但你要能够说出什么是系统异常，以及几个系统异常就可以了，当然，这些异常完全用其英文名称来写是最好的，如果实在写不出，那就用中文吧，有总比没有强！ 
+
+所谓系统异常，就是…..，它们都是RuntimeException的子类，在jdk doc中查RuntimeException类，就可以看到其所有的子类列表，也就是看到了所有的系统异常。我比较有印象的系统异常有：NullPointerException、ArrayIndexOutOfBoundsException、ClassCastException。
+
+### **102、sleep() 和 wait() 有什么区别?** 
+
+   （网上的答案：sleep是线程类（Thread）的方法，导致此线程暂停执行指定时间，给执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复。调用sleep不会释放对象锁。 wait是Object类的方法，对此对象调用wait方法导致本线程放弃对象锁，进入等待此对象的等待锁定池，只有针对此对象发出notify方法（或notifyAll）后本线程才进入对象锁定池准备获得对象锁进入运行状态。） 
+
+sleep就是正在执行的线程主动让出cpu，cpu去执行其他线程，在sleep指定的时间过后，cpu才会回到这个线程上继续往下执行，如果当前线程进入了同步锁，sleep方法并不会释放锁，即使当前线程使用sleep方法让出了cpu，但其他被同步锁挡住了的线程也无法得到执行。wait是指在一个已经进入了同步锁的线程内，让自己暂时让出同步锁，以便其他正在等待此锁的线程可以得到同步锁并运行，只有其他线程调用了notify方法（notify并不释放锁，只是告诉调用过wait方法的线程可以去参与获得锁的竞争了，但不是马上得到锁，因为锁还在别人手里，别人还没释放。如果notify方法后面的代码还有很多，需要这些代码执行完后才会释放锁，可以在notfiy方法后增加一个等待和一些代码，看看效果），调用wait方法的线程就会解除wait状态和程序可以再次得到锁后继续向下运行。对于wait的讲解一定要配合例子代码来说明，才显得自己真明白。
+
+### **103、同步和异步有何异同，在什么情况下分别使用他们？举例说明。** 
+
+如果数据将在线程间共享。例如正在写的数据以后可能被另一个线程读到，或者正在读的数据可能已经被另一个线程写过了，那么这些数据就是共享数据，必须进行同步存取。 
+
+当应用程序在对象上调用了一个需要花费很长时间来执行的方法，并且不希望让程序等待方法的返回时，就应该使用异步编程，在很多情况下采用异步途径往往更有效率。 
+
+### **104、启动一个线程是用run()还是start()? .** 
+
+启动一个线程是调用start()方法，使线程就绪状态，以后可以被调度为运行状态，一个线程必须关联一些具体的执行代码，run()方法是该线程所关联的执行代码。
+
+### **105、当一个线程进入一个对象的一个synchronized方法后，其它线程是否可进入此对象的其它方法?** 
+
+分几种情况：
+
+   1.其他方法前是否加了synchronized关键字，如果没加，则能。
+
+   2.如果这个方法内部调用了wait，则可以进入其他synchronized方法。
+
+   3.如果其他个方法都加了synchronized关键字，并且内部没有调用wait，则不能。
+
+   4.如果其他方法是static，它用的同步锁是当前类的字节码，与非静态的方法不能同步，因为非静态的方法用的是this。
+
+### **106、简述synchronized和java.util.concurrent.locks.Lock的异同 ？** 
+
+主要相同点：Lock能完成synchronized所实现的所有功能 
+
+主要不同点：Lock有比synchronized更精确的线程语义和更好的性能。synchronized会自动释放锁，而Lock一定要求程序员手工释放，并且必须在finally从句中释放。Lock还有更强大的功能，例如，它的tryLock方法可以非阻塞方式去拿锁。 
+
+### **107、ArrayList和Vector的区别**
+
+答：
+
+这两个类都实现了List接口（List接口继承了Collection接口），他们都是有序集合，即存储在这两个集合中的元素的位置都是有顺序的，相当于一种动态的数组，我们以后可以按位置索引号取出某个元素，，并且其中的数据是允许重复的，这是HashSet之类的集合的最大不同处，HashSet之类的集合不可以按索引号去检索其中的元素，也不允许有重复的元素（本来题目问的与hashset没有任何关系，但为了说清楚ArrayList与Vector的功能，我们使用对比方式，更有利于说明问题）。
+
+接着才说ArrayList与Vector的区别，这主要包括两个方面：. 
+（1）同步性：
+
+​	Vector是线程安全的，也就是说是它的方法之间是线程同步的，而ArrayList是线程序不安全的，它的方法之间是线程不同步的。如果只有一个线程会访问到集合，那最好是使用ArrayList，因为它不考虑线程安全，效率会高些；如果有多个线程会访问到集合，那最好是使用Vector，因为不需要我们自己再去考虑和编写线程安全的代码。
+
+备注：对于Vector&ArrayList、Hashtable&HashMap，要记住线程安全的问题，记住Vector与Hashtable是旧的，是java一诞生就提供了的，它们是线程安全的，ArrayList与HashMap是java2时才提供的，它们是线程不安全的。所以，我们讲课时先讲老的。
+（2）数据增长：
+
+​	ArrayList与Vector都有一个初始的容量大小，当存储进它们里面的元素的个数超过了容量时，就需要增加ArrayList与Vector的存储空间，每次要增加存储空间时，不是只增加一个存储单元，而是增加多个存储单元，每次增加的存储单元的个数在内存空间利用与程序效率之间要取得一定的平衡。Vector默认增长为原来两倍，而ArrayList的增长策略在文档中没有明确规定（从源代码看到的是增长为原来的1.5倍）。ArrayList与Vector都可以设置初始的空间大小，Vector还可以设置增长的空间大小，而ArrayList没有提供设置增长空间的方法。
+
+  总结：即Vector增长原来的一倍，ArrayList增加原来的0.5倍。
+
+### **108、HashMap和Hashtable的区别**
+
+（条理上还需要整理，也是先说相同点，再说不同点）
+
+HashMap是Hashtable的轻量级实现（非线程安全的实现），他们都完成了Map接口，主要区别在于HashMap允许空（null）键值（key）,由于非线程安全，在只有一个线程访问的情况下，效率要高于Hashtable。 
+
+HashMap允许将null作为一个entry的key或者value，而Hashtable不允许。 
+
+HashMap把Hashtable的contains方法去掉了，改成containsvalue和containsKey。因为contains方法容易让人引起误解。 
+
+Hashtable继承自Dictionary类，而HashMap是Java1.2引进的Map interface的一个实现。 
+
+最大的不同是，Hashtable的方法是Synchronize的，而HashMap不是，在多个线程访问Hashtable时，不需要自己为它的方法实现同步，而HashMap 就必须为之提供外同步。 
+
+Hashtable和HashMap采用的hash/rehash算法都大概一样，所以性能不会有很大的差异。
+
+就HashMap与HashTable主要从三方面来说。 
+一.历史原因:Hashtable是基于陈旧的Dictionary类的，HashMap是Java 1.2引进的Map接口的一个实现 
+二.同步性:Hashtable是线程安全的，也就是说是同步的，而HashMap是线程序不安全的，不是同步的 
+三.值：只有HashMap可以让你将空值作为一个表的条目的key或value 
+
+### 109、List 和 Map 区别?
+
+一个是存储单列数据的集合，另一个是存储键和值这样的双列数据的集合，List中存储的数据是有顺序，并且允许重复；Map中存储的数据是没有顺序的，其键是不能重复的，它的值是可以有重复的。
+
+### 110、List, Set, Map是否继承自Collection接口?
+
+  List，Set是，Map不是 
