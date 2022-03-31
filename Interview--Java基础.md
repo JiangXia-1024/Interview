@@ -12,7 +12,7 @@
 
 . 博客地址：https://blog.csdn.net/qq_41153943
 
-## 一、Java基础
+------
 
 ### 1、&和&&的区别
 
@@ -2461,8 +2461,6 @@ sleep就是正在执行的线程主动让出cpu，cpu去执行其他线程，在
 
 ### **108、HashMap和Hashtable的区别**
 
-（条理上还需要整理，也是先说相同点，再说不同点）
-
 HashMap是Hashtable的轻量级实现（非线程安全的实现），他们都完成了Map接口，主要区别在于HashMap允许空（null）键值（key）,由于非线程安全，在只有一个线程访问的情况下，效率要高于Hashtable。 
 
 HashMap允许将null作为一个entry的key或者value，而Hashtable不允许。 
@@ -2487,3 +2485,190 @@ Hashtable和HashMap采用的hash/rehash算法都大概一样，所以性能不�
 ### 110、List, Set, Map是否继承自Collection接口?
 
   List，Set是，Map不是 
+
+### **111、List、Map、Set三个接口，存取元素时，各有什么特点？** 
+
+首先，List与Set具有相似性，它们都是单列元素的集合，所以，它们有一个功共同的父接口，叫Collection。Set里面不允许有重复的元素，所谓重复，即不能有两个相等（注意，不是仅仅是相同）的对象 ，即假设Set集合中有了一个A对象，现在我要向Set集合再存入一个B对象，但B对象与A对象equals相等，则B对象存储不进去，所以，Set集合的add方法有一个boolean的返回值，当集合中没有某个元素，此时add方法可成功加入该元素时，则返回true，当集合含有与某个元素equals相等的元素时，此时add方法无法加入该元素，返回结果为false。Set取元素时，没法说取第几个，只能以Iterator接口取得所有的元素，再逐一遍历各个元素。
+
+List表示有先后顺序的集合， 注意，不是那种按年龄、按大小、按价格之类的排序。当我们多次调用add(Obj e)方法时，每次加入的对象就像火车站买票有排队顺序一样，按先来后到的顺序排序。有时候，也可以插队，即调用add(int index,Obj e)方法，就可以指定当前对象在集合中的存放位置。一个对象可以被反复存储进List中，每调用一次add方法，这个对象就被插入进集合中一次，其实，并不是把这个对象本身存储进了集合中，而是在集合中用一个索引变量指向这个对象，当这个对象被add多次时，即相当于集合中有多个索引指向了这个对象，如图x所示。List除了可以以Iterator接口取得所有的元素，再逐一遍历各个元素之外，还可以调用get(index i)来明确说明取第几个。
+
+Map与List和Set不同，它是双列的集合，其中有put方法，定义如下：put(obj key,obj value)，每次存储时，要存储一对key/value，不能存储重复的key，这个重复的规则也是按equals比较相等。取则可以根据key获得相应的value，即get(Object key)返回值为key 所对应的value。另外，也可以获得所有的key的结合，还可以获得所有的value的结合，还可以获得key和value组合成的Map.Entry对象的集合。
+
+List 以特定次序来持有元素，可有重复元素。Set 无法拥有重复元素,内部排序。Map 保存key-value值，value可多值。
+
+HashSet按照hashcode值的某种运算方式进行存储，而不是直接按hashCode值的大小进行存储。例如，"abc" ---> 78，"def" ---> 62，"xyz" ---> 65在hashSet中的存储顺序不是62,65,78，这些问题感谢以前一个叫崔健的学员提出，最后通过查看源代码给他解释清楚，看本次培训学员当中有多少能看懂源码。LinkedHashSet按插入的顺序存储，那被存储对象的hashcode方法还有什么作用呢？学员想想!hashset集合比较两个对象是否相等，首先看hashcode方法是否相等，然后看equals方法是否相等。new 两个Student插入到HashSet中，看HashSet的size，实现hashcode和equals方法后再看size。
+
+同一个对象可以在Vector中加入多次。往集合里面加元素，相当于集合里用一根绳子连接到了目标对象。往HashSet中却加不了多次的。 
+
+### **112、说出ArrayList,Vector, LinkedList的存储性能和特性** 
+
+ArrayList和Vector都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢，Vector由于使用了synchronized方法（线程安全），通常性能上较ArrayList差，而LinkedList使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历，但是插入数据时只需要记录本项的前后项即可，所以插入速度较快。
+
+LinkedList也是线程不安全的，LinkedList提供了一些方法，使得LinkedList可以被当作堆栈和队列来使用。
+
+### **113、去掉一个Vector集合中重复的元素** 
+
+```
+Vector newVector = new Vector();
+
+For (int i=0;i<vector.size();i++)
+
+{
+
+Object obj = vector.get(i);
+
+​	if(!newVector.contains(obj);
+
+​		newVector.add(obj);
+
+}
+```
+
+还有一种简单的方式，
+
+```
+HashSet set = new HashSet(vector); 
+```
+
+### **114、Collection 和 Collections的区别。** 
+
+Collection是集合类的上级接口，继承与他的接口主要有Set 和List. 
+
+Collections是针对集合类的一个帮助类，他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。 
+
+### **115、Set里的元素是不能重复的，那么用什么方法来区分重复与否呢? 是用==还是equals()? 它们有何区别?** 
+
+Set里的元素是不能重复的，元素重复与否是使用equals()方法进行判断的。 
+
+equals()和==方法决定引用值是否指向同一对象equals()在类中被覆盖，为的是当两个分离的对象的内容和类型相配的话，返回真值。
+
+### **116、两个对象值相同(x.equals(y) == true)，但却可有不同的hash code，这句话对不对?** 
+
+对。
+
+如果对象要保存在HashSet或HashMap中，它们的equals相等，那么，它们的hashcode值就必须相等。
+
+如果不是要保存在HashSet或HashMap，则与hashcode没有什么关系了，这时候hashcode不等是可以的，例如arrayList存储的对象就不用实现hashcode，当然，我们没有理由不实现，通常都会去实现的。
+
+**TreeSet里面放对象，如果同时放入了父类和子类的实例对象，那比较时使用的是父类的compareTo方法，还是使用的子类的compareTo方法，还是抛异常！** 
+
+（应该是没有针对问题的确切的答案，当前的add方法放入的是哪个对象，就调用哪个对象的compareTo方法，至于这个compareTo方法怎么做，就看当前这个对象的类中是如何编写这个方法的）
+
+实验代码：
+
+```
+public class Parent implements Comparable {
+
+​	private int age = 0;
+
+​	public Parent(int age){
+
+​		this.age = age;
+
+​	}
+
+​	public int compareTo(Object o) {
+
+​		// TODO Auto-generated method stub
+
+​		System.out.println("method of parent");
+
+​		Parent o1 = (Parent)o;
+
+​		return age>o1.age?1:age<o1.age?-1:0;
+
+​	}
+
+ 
+
+}
+
+ 
+
+public class Child extends Parent {
+
+ 
+
+​	public Child(){
+
+​		super(3);
+
+​	}
+
+​	public int compareTo(Object o) {
+
+ 
+
+
+			System.out.println("method of child");
+
+			Child o1 = (Child)o;
+
+			return 1;
+
+ 
+
+	}
+
+}
+
+ 
+
+**public** **class** TreeSetTest {
+
+ 
+
+​	/**
+
+​	 * **@param** args
+
+​	 */
+
+​	**public** **static** **void** main(String[] args) {
+
+​		// **TODO** Auto-generated method stub
+
+​		TreeSet set = **new** TreeSet();
+
+​		set.add(**new** Parent(3));
+
+​		set.add(**new** Child());
+
+​		set.add(**new** Parent(4));
+
+​		System.*out*.println(set.size());
+
+​	}
+
+}
+```
+
+### **117、说出一些常用的类，包，接口，请各举5个** 
+
+要让人家感觉你对java ee开发很熟，所以，不能仅仅只列core java中的那些东西，要多列你在做ssh项目中涉及的那些东西。就写你最近写的那些程序中涉及的那些类。
+
+常用的类：BufferedReader  BufferedWriter  FileReader  FileWirter  String  Integer 
+
+java.util.Date，System，Class，List,HashMap
+
+常用的包：java.lang  java.io  java.util  java.sql ,javax.servlet,org.apache.strtuts.action,org.hibernate
+
+常用的接口：Remote  List  Map  Document  NodeList ,Servlet,HttpServletRequest,HttpServletResponse,Transaction(Hibernate)、Session(Hibernate),HttpSession
+
+### **118、什么是java序列化，如何实现java序列化？或者请解释Serializable接口的作用。** 
+
+我们有时候将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，例如，要将java对象存储到硬盘或者传送给网络上的其他计算机，这个过程我们可以自己写代码去把一个java对象变成某个格式的字节流再传输，但是，jre本身就提供了这种支持，我们可以调用OutputStream的writeObject方法来做，如果要让java 帮我们做，要被传输的对象必须实现serializable接口，这样，javac编译时就会进行特殊处理，编译的类才可以被writeObject方法操作，这就是所谓的序列化。需要被序列化的类必须实现Serializable接口，该接口是一个mini接口，其中没有需要实现的方法，implements Serializable只是为了标注该对象是可被序列化的。 
+
+例如，在web开发中，如果对象被保存在了Session中，tomcat在重启时要把Session对象序列化到硬盘，这个对象就必须实现Serializable接口。如果对象要经过分布式系统进行网络传输或通过rmi等远程调用，这就需要在网络上传输对象，被传输的对象就必须实现Serializable接口。
+
+### **119、**解释一下什么是servlet;
+
+答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
+
+### **120、说一说Servlet的生命周期?** 
+
+答:servlet有良好的生存期的定义，包括加载和实例化、初始化、处理请求以及服务结束。这个生存期由javax.servlet.Servlet接口的init,service和destroy方法表达。
+
+Servlet被服务器实例化后，容器运行其init方法，请求到达时运行其service方法，service方法自动派遣运行与请求对应的doXXX方法（doGet，doPost）等，当服务器决定将实例销毁的时候调用其destroy方法。
+
+web容器加载servlet，生命周期开始。通过调用servlet的init()方法进行servlet的初始化。通过调用service()方法实现，根据请求的不同调用不同的do***()方法。结束服务，web容器调用servlet的destroy()方法。 

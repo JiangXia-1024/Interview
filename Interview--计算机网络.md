@@ -147,3 +147,4 @@ Sequence number(顺序号码) Acknowledge number(确认号码)
 **session共享机制**
 
 使用分布式缓存方案比如memcached、redis，但是要求Memcached或Redis必须是集群。
+
