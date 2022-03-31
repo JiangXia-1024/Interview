@@ -2672,3 +2672,202 @@ java.util.Date，System，Class，List,HashMap
 Servlet被服务器实例化后，容器运行其init方法，请求到达时运行其service方法，service方法自动派遣运行与请求对应的doXXX方法（doGet，doPost）等，当服务器决定将实例销毁的时候调用其destroy方法。
 
 web容器加载servlet，生命周期开始。通过调用servlet的init()方法进行servlet的初始化。通过调用service()方法实现，根据请求的不同调用不同的do***()方法。结束服务，web容器调用servlet的destroy()方法。 
+
+### **121、Servlet的基本架构** 
+
+```
+public class ServletName extends HttpServlet { 
+
+public void doPost(HttpServletRequest request, HttpServletResponse response) throws 
+
+ServletException, IOException { 
+} 
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws 
+
+ServletException, IOException { 
+} 
+} 
+```
+
+### **122、SERVLET API中forward() 与redirect()的区别？** 
+
+答:前者仅是容器中控制权的转向，在客户端浏览器地址栏中不会显示出转向后的地址；后者则是完全的跳转，浏览器将会得到跳转的地址，并重新发送请求链接。这样，从浏览器的地址栏中可以看到跳转后的链接地址。所以，前者更加高效，在前者可以满足需要时，尽量使用forward()方法，并且，这样也有助于隐藏实际的链接。在有些情况下，比如，需要跳转到一个其它服务器上的资源，则必须使用sendRedirect()方法。 
+
+forward是服务器请求资源，服务器直接访问目标地址的URL，把那个URL的响应内容读取过来，然后把这些内容再发给浏览器，浏览器根本不知道服务器发送的内容是从哪儿来的，所以它的地址栏中还是原来的地址。 
+
+redirect就是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址，一般来说浏览器会用刚才请求的所有参数重新请求，所以session,request参数都可以获取。
+
+### **123、什么情况下调用doGet()和doPost()？** 
+
+Jsp页面中的FORM标签里的method属性为get时调用doGet()，为post时调用doPost()。 
+
+### 124、**Request对象的主要方法：** 
+
+setAttribute(String name,Object)：设置名字为name的request的参数值 
+
+getAttribute(String name)：返回由name指定的属性值 
+
+getAttributeNames()：返回request对象所有属性的名字集合，结果是一个枚举的实例 
+
+getCookies()：返回客户端的所有Cookie对象，结果是一个Cookie数组 
+
+getCharacterEncoding()：返回请求中的字符编码方式 
+
+getContentLength()：返回请求的Body的长度 
+
+getHeader(String name)：获得HTTP协议定义的文件头信息 
+
+getHeaders(String name)：返回指定名字的request Header的所有值，结果是一个枚举的实例 
+
+getHeaderNames()：返回所以request Header的名字，结果是一个枚举的实例 
+
+getInputStream()：返回请求的输入流，用于获得请求中的数据 
+
+getMethod()：获得客户端向服务器端传送数据的方法 
+
+getParameter(String name)：获得客户端传送给服务器端的有name指定的参数值 
+
+getParameterNames()：获得客户端传送给服务器端的所有参数的名字，结果是一个枚举的实例 
+
+getParametervalues(String name)：获得有name指定的参数的所有值 
+
+getProtocol()：获取客户端向服务器端传送数据所依据的协议名称 
+
+getQueryString()：获得查询字符串 
+
+getRequestURI()：获取发出请求字符串的客户端地址 
+
+getRemoteAddr()：获取客户端的IP地址 
+
+getRemoteHost()：获取客户端的名字 
+
+getSession([Boolean create])：返回和请求相关Session 
+
+getServerName()：获取服务器的名字 
+
+getServletPath()：获取客户端所请求的脚本文件的路径 
+
+getServerPort()：获取服务器的端口号 
+
+removeAttribute(String name)：删除请求中的一个属性 
+
+### 125、 **jsp有哪些内置对象?作用分别是什么? 分别有什么方法？** 
+
+答:JSP共有以下9个内置的对象： 
+
+request 用户端请求，此请求会包含来自GET/POST请求的参数 
+
+response 网页传回用户端的回应 
+
+pageContext 网页的属性是在这里管理 
+
+session 与请求有关的会话期 
+
+application servlet 正在执行的内容 
+
+out 用来传送回应的输出 
+
+config servlet的构架部件 
+
+page JSP网页本身 
+
+exception 针对错误网页，未捕捉的例外 
+
+request表示HttpServletRequest对象。它包含了有关浏览器请求的信息，并且提供了几个用于获取cookie, header, 和session数据的有用的方法。 
+
+response表示HttpServletResponse对象，并提供了几个用于设置送回 浏览器的响应的方法（如cookies,头信息等） 
+
+out对象是javax.jsp.JspWriter的一个实例，并提供了几个方法使你能用于向浏览器回送输出结果。 
+
+pageContext表示一个javax.servlet.jsp.PageContext对象。它是用于方便存取各种范围的名字空间、servlet相关的对象的API，并且包装了通用的servlet相关功能的方法。 
+
+session表示一个请求的javax.servlet.http.HttpSession对象。Session可以存贮用户的状态信息 
+
+applicaton 表示一个javax.servle.ServletContext对象。这有助于查找有关servlet引擎和servlet环境的信息 
+
+config表示一个javax.servlet.ServletConfig对象。该对象用于存取servlet实例的初始化参数。 
+
+page表示从该页面产生的一个servlet实例 
+
+### **126、MVC的各个部分都有那些技术来实现?如何实现?** 
+
+MVC是Model－View－Controller的简写。Model 代表的是应用的业务逻辑（通过JavaBean，EJB组件实现）， View 是应用的表示面（由JSP页面产生），Controller 是提供应用的处理过程控制（一般是一个Servlet），通过这种设计模型把应用逻辑，处理过程和显示逻辑分成不同的组件实现。这些组件可以进行交互和重用。 
+
+### 127、**我们在web应用开发过程中经常遇到输出某种编码的字符，如iso8859-1等，如何输出一个某种编码的字符串？** 
+
+```
+Public String translate (String str) { 
+   String tempStr = ""; 
+   try { 
+     tempStr = new String(str.getBytes("ISO-8859-1"), "GBK"); 
+     tempStr = tempStr.trim(); 
+   } 
+   catch (Exception e) { 
+     System.err.println(e.getMessage()); 
+   } 
+   return tempStr; 
+ } 
+```
+
+### 128、**用JDBC如何调用存储过程**
+
+```
+package com.huawei.interview.lym;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Types;
+
+public class JdbcTest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection cn = null;
+		CallableStatement cstmt = null;		
+		try {
+			//这里最好不要这么干，因为驱动名写死在程序中了
+			Class.forName("com.mysql.jdbc.Driver");
+			//实际项目中，这里应用DataSource数据，如果用框架，
+			//这个数据源不需要我们编码创建，我们只需Datasource ds = context.lookup()
+			//cn = ds.getConnection();			
+			cn = DriverManager.getConnection("jdbc:mysql:///test","root","root");
+			cstmt = cn.prepareCall("{call insert_Student(?,?,?)}");
+			cstmt.registerOutParameter(3,Types.INTEGER);
+			cstmt.setString(1, "wangwu");
+			cstmt.setInt(2, 25);
+			cstmt.execute();
+			//get第几个，不同的数据库不一样，建议不写
+			System.out.println(cstmt.getString(3));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+
+			/*try{cstmt.close();}catch(Exception e){}
+			try{cn.close();}catch(Exception e){}*/
+			try {
+				if(cstmt != null)
+					cstmt.close();
+				if(cn != null)				
+					cn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+```
+
+### **129、Class.forName的作用?为什么要用?** 
+
+答：按参数中指定的字符串形式的类名去搜索并加载相应的类，如果该类字节码已经被加载过，则返回代表该字节码的Class实例对象，否则，按类加载器的委托机制去搜索和加载该类，如果所有的类加载器都无法加载到该类，则抛出ClassNotFoundException。加载完这个Class字节码后，接着就可以使用Class字节码的newInstance方法去创建该类的实例对象了。
+
+有时候，我们程序中所有使用的具体类名在设计时（即开发时）无法确定，只有程序运行时才能确定，这时候就需要使用Class.forName去动态加载该类，这个类名通常是在配置文件中配置的，例如，spring的ioc中每次依赖注入的具体类就是这样配置的，jdbc的驱动类名通常也是通过配置文件来配置的，以便在产品交付使用后不用修改源程序就可以更换驱动类名。
